@@ -8,6 +8,7 @@
     "dev:debug": "nodemon --inspect src/server.js"
   },
   "dependencies": {
+<<<<<<< HEAD
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
@@ -15,6 +16,12 @@
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.6",
     "yup": "^0.28.4"
+=======
+    "express": "^4.17.1",
+    "pg": "^8.0.2",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.6"
+>>>>>>> ea6125450c6562f65eb46c6ed2685b7a736e7a17
   },
   "devDependencies": {
     "eslint": "^6.8.0",
