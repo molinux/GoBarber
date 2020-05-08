@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import User from './app/models/User';
 
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
@@ -11,8 +10,9 @@ const routes = new Router();
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
+// Somente o que estiver depois do routes.use utilizará o controle de sessão
 routes.use(authMiddleware);
 
-routes.put('/users', UserController.update);
+routes.put('/users', authMiddleware, UserController.update);
 
 export default routes;
