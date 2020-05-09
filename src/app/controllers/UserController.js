@@ -38,7 +38,7 @@ class UserController {
     // Validações
     const schema = Yup.object().shape({
       name: Yup.string(),
-      email: Yup.string().email(),
+      email: Yup.string().email().required(),
       oldPassword: Yup.string().min(6),
       // Se informar senha antiga é obrigatorio definir uma nova
       password: Yup.string()
@@ -62,7 +62,7 @@ class UserController {
 
     // So verifica se o usuario estiver tentando alterar o email
     // (Caso o usuário tenha preenchido o campo email na edição)
-    if (email !== user.email) {
+    if (email && email !== user.email) {
       const userExists = await User.findOne({ where: { email } });
 
       if (userExists) {

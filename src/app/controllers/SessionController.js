@@ -11,7 +11,7 @@ class SessionController {
       password: Yup.string().required(),
     });
 
-    // Pegando os dados enviados e valudando com o schema
+    // Pegando os dados enviados e validando com o schema
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails' });
     }
