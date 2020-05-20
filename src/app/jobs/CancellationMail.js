@@ -11,6 +11,8 @@ class CancellationMail {
   }
 
   // Quando o processo executar, executa o handle
+  // o handle é chamado para cada envio de email
+  // dentro do "data" estão todas as infos para envio de email
   async handle({ data }) {
     const { appointment } = data;
 
