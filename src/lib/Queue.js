@@ -37,8 +37,17 @@ class Queue {
     jobs.forEach((job) => {
       const { bee, handle } = this.queues[job.key];
 
-      bee.process(handle);
+      /*
+      Monitorar possiveis falhas na fila
+      Mais estados de monitoramento em:
+      https://github.com/bee-queue/bee-queue#benchmarks
+      */
+      bee.on('failed', this.handleFailure).process(handle);
     });
+  }
+
+  handleFailure(job, err) {
+    console.log(`Queue ${job.queue.name}: FAILED`, err);
   }
 }
 

@@ -14,10 +14,10 @@ class AppointmentController {
     // Se não for informado, por padrão define como page 1
     const { page = 1 } = req.query;
 
-    const appointments = await Appointment.findAll({
+    const appointments = await Appointment.finddAll({
       where: { user_id: req.userId, canceled_at: null },
       order: ['date'],
-      attributes: ['id', 'date'],
+      attributes: ['id', 'date', 'past', 'cancelable'],
       // 20 registros por vez (paginacao)
       limit: 20,
       // Quantos registros quer pular
