@@ -2,6 +2,7 @@ import 'dotenv/config';
 
 import express from 'express';
 import path from 'path';
+import cors from 'cors';
 import Youch from 'youch';
 import * as Sentry from '@sentry/node';
 import 'express-async-errors';
@@ -23,6 +24,9 @@ class App {
 
   middlwares() {
     this.server.use(Sentry.Handlers.requestHandler());
+    // Quando for do endereço especificado permite, caso contrario bloqueia
+    // this.server.use(cors({ origin: 'https://molinux.net.br' }));
+    this.server.use(cors());
     this.server.use(express.json());
     this.server.use(
       '/files/',
