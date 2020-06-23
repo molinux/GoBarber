@@ -31,7 +31,7 @@ class ScheduleController {
         {
           model: User,
           as: 'user',
-          attributes: ['nome'],
+          attributes: ['name'],
         },
       ],
       // Organizar os agendamentos por data

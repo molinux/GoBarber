@@ -37,7 +37,6 @@ class AppointmentController {
         },
       ],
     });
-
     return res.json(appointments);
   }
 
