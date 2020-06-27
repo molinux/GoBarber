@@ -11,13 +11,12 @@ import Queue from '../../lib/Queue';
 
 class AppointmentController {
   async index(req, res) {
-    // Se não for informado, por padrão define como page 1
     const { page = 1 } = req.query;
 
-    const appointments = await Appointment.finddAll({
+    const appointments = await Appointment.findAll({
       where: { user_id: req.userId, canceled_at: null },
       order: ['date'],
-      attributes: ['id', 'date', 'past', 'cancelable'],
+      attributes: ['id', 'date'],
       // 20 registros por vez (paginacao)
       limit: 20,
       // Quantos registros quer pular
@@ -37,8 +36,39 @@ class AppointmentController {
         },
       ],
     });
+
     return res.json(appointments);
   }
+  // async index(req, res) {
+  //   // Se não for informado, por padrão define como page 1
+  //   const { page = 1 } = req.query;
+
+  //   const appointments = await Appointment.finddAll({
+  //     where: { user_id: req.userId, canceled_at: null },
+  //     order: ['date'],
+  //     attributes: ['id', 'date', 'past', 'cancelable'],
+  //     // 20 registros por vez (paginacao)
+  //     limit: 20,
+  //     // Quantos registros quer pular
+  //     offset: (page - 1) * 20,
+  //     include: [
+  //       {
+  //         model: User,
+  //         as: 'provider',
+  //         attributes: ['id', 'name'],
+  //         include: [
+  //           {
+  //             model: File,
+  //             as: 'avatar',
+  //             attributes: ['id', 'path', 'url'],
+  //           },
+  //         ],
+  //       },
+  //     ],
+  //   });
+  //   return res.json(appointments);
+  //   // return res.json({ message: 'teste' });
+  // }
 
   async store(req, res) {
     const schema = Yup.object().shape({
